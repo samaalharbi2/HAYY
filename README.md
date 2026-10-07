@@ -160,4 +160,4 @@ dbt reads `~/.dbt/profiles.yml` (outside the repo, `method: oauth`, dataset `bal
 
 ---
 
-**Author:** [Sama Alharbi](https://github.com/samaalharbi2) · Data source: open 940 service-request data · Map data © OpenStreetMap contributors
+**Author:** [Sama Alharbi](https://github.com/samaalharbi2) ·
