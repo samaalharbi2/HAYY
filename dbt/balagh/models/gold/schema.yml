@@ -1,0 +1,48 @@
+version: 2
+
+models:
+  - name: dim_date
+    columns:
+      - name: date_key
+        data_tests: [unique, not_null]
+  - name: dim_issue
+    columns:
+      - name: issue_key
+        data_tests: [unique, not_null]
+  - name: dim_location
+    columns:
+      - name: location_key
+        data_tests: [unique, not_null]
+  - name: dim_status
+    columns:
+      - name: status_code
+        data_tests: [unique, not_null]
+  - name: fact_service_requests
+    description: "One row per 940 service request (grain). Reads from Silver only."
+    columns:
+      - name: request_sk
+        data_tests: [unique, not_null]
+      - name: date_key
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_date')
+                field: date_key
+      - name: issue_key
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_issue')
+                field: issue_key
+      - name: location_key
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_location')
+                field: location_key
+      - name: status_code
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_status')
+                field: status_code

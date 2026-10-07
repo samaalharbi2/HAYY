@@ -40,3 +40,21 @@ All files have 6 columns. There is no request ID.
 ## Open questions
 - Does Q2 cover a wider area (e.g. الخرج، الحريق) than Q1?
 - Do the 951 empty closure values in Layout B mean "in progress"?
+
+## Finding 5: Key collision in dim_location (caught by a test)
+- The source has 1 request (Q2) with the location written as "غير محدد".
+- Our model mapped empty locations to the same text, so two different
+  members shared one key. The `unique` test on dim_location failed.
+- This test was silently disabled at first: dim_location did not exist
+  when the tests were parsed, and dbt partial parsing kept them disabled.
+  We noticed because the test count was 32 instead of the expected 35.
+
+Fix:
+- Empty locations use a sentinel ('__missing__') for the key,
+  and the label "غير متوفر في المصدر".
+- The key is built in one macro (location_key) used by both
+  dim_location and the fact table, so they can never drift apart.
+
+Lessons:
+- Never use a value that can appear in real data as a placeholder.
+- A green run is not enough: always check that the expected number of tests ran.
