@@ -1,0 +1,19 @@
+version: 2
+
+seeds:
+  - name: map_issue_type
+    description: "Every Arabic issue-type variant in the source -> one canonical issue_code, with EN labels and a domain."
+    columns:
+      - name: issue_type_ar
+        data_tests: [unique, not_null]
+      - name: issue_code
+        data_tests: [not_null]
+      - name: issue_en
+        data_tests: [not_null]
+  - name: map_location
+    description: "Arabic location -> English label and location type (neighborhood, municipality, truncated...)."
+    columns:
+      - name: location_ar
+        data_tests: [unique, not_null]
+      - name: location_en
+        data_tests: [not_null]

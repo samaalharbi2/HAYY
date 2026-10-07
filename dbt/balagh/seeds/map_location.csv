@@ -1,0 +1,258 @@
+location_ar,location_label_ar,location_en,location_type,location_type_ar,location_type_en
+بلدية,بلدية,Municipality,generic_municipality,بلدية (غير محددة),Municipality (unnamed)
+النرجس,النرجس,Al-Narjis,neighborhood,حي,Neighborhood
+طويق,طويق,Tuwaiq,neighborhood,حي,Neighborhood
+ظهرة,ظهرة,Dhahrat,neighborhood,حي,Neighborhood
+الرمال,الرمال,Al-Rimal,neighborhood,حي,Neighborhood
+العارض,العارض,Al-Arid,neighborhood,حي,Neighborhood
+النسيم,النسيم,Al-Naseem,neighborhood,حي,Neighborhood
+الملك,الملك,Al-Malik,truncated_name,اسم مقطوع,Truncated name
+الملقا,الملقا,Al-Malqa,neighborhood,حي,Neighborhood
+الياسمين,الياسمين,Al-Yasmin,neighborhood,حي,Neighborhood
+بدر,بدر,Badr,neighborhood,حي,Neighborhood
+العريجاء,العريجاء,Al-Uraija,neighborhood,حي,Neighborhood
+المهدية,المهدية,Al-Mahdiyah,neighborhood,حي,Neighborhood
+العليا,العليا,Al-Olaya,neighborhood,حي,Neighborhood
+المونسية,المونسية,Al-Munsiyah,neighborhood,حي,Neighborhood
+العزيزية,العزيزية,Al-Aziziyah,neighborhood,حي,Neighborhood
+الصحافة,الصحافة,Al-Sahafah,neighborhood,حي,Neighborhood
+الجنادرية,الجنادرية,Al-Janadriyah,neighborhood,حي,Neighborhood
+القيروان,القيروان,Al-Qayrawan,neighborhood,حي,Neighborhood
+السويدي,السويدي,Al-Suwaidi,neighborhood,حي,Neighborhood
+اليرموك,اليرموك,Al-Yarmuk,neighborhood,حي,Neighborhood
+العوالي,العوالي,Al-Awali,neighborhood,حي,Neighborhood
+الدار,الدار,Al-Dar,neighborhood,حي,Neighborhood
+منفوحة,منفوحة,Manfuhah,neighborhood,حي,Neighborhood
+النهضة,النهضة,Al-Nahdah,neighborhood,حي,Neighborhood
+قرطبة,قرطبة,Qurtubah,neighborhood,حي,Neighborhood
+عكاظ,عكاظ,Okaz,neighborhood,حي,Neighborhood
+النظيم,النظيم,Al-Nadhim,neighborhood,حي,Neighborhood
+القادسية,القادسية,Al-Qadisiyah,neighborhood,حي,Neighborhood
+الروضة,الروضة,Al-Rawdah,neighborhood,حي,Neighborhood
+الحزم,الحزم,Al-Hazm,neighborhood,حي,Neighborhood
+السليمانية,السليمانية,Al-Sulaymaniyah,neighborhood,حي,Neighborhood
+عرقة,عرقة,Irqah,neighborhood,حي,Neighborhood
+الخليج,الخليج,Al-Khalij,neighborhood,حي,Neighborhood
+حطين,حطين,Hittin,neighborhood,حي,Neighborhood
+الربوة,الربوة,Al-Rabwah,neighborhood,حي,Neighborhood
+العقيق,العقيق,Al-Aqiq,neighborhood,حي,Neighborhood
+السعادة,السعادة,Al-Saadah,neighborhood,حي,Neighborhood
+أم,أم,Umm,truncated_name,اسم مقطوع,Truncated name
+اشبيلية,اشبيلية,Ishbiliyah,neighborhood,حي,Neighborhood
+الروابي,الروابي,Al-Rawabi,neighborhood,حي,Neighborhood
+المصيف,المصيف,Al-Masif,neighborhood,حي,Neighborhood
+الجزيرة,الجزيرة,Al-Jazirah,neighborhood,حي,Neighborhood
+الربيع,الربيع,Al-Rabi,neighborhood,حي,Neighborhood
+الحمراء,الحمراء,Al-Hamra,neighborhood,حي,Neighborhood
+القدس,القدس,Al-Quds,neighborhood,حي,Neighborhood
+الشفا,الشفا,Al-Shifa,neighborhood,حي,Neighborhood
+البيان,البيان,Al-Bayan,neighborhood,حي,Neighborhood
+الوادي,الوادي,Al-Wadi,neighborhood,حي,Neighborhood
+التعاون,التعاون,Al-Taawun,neighborhood,حي,Neighborhood
+السلام,السلام,Al-Salam,neighborhood,حي,Neighborhood
+الفيحاء,الفيحاء,Al-Fayha,neighborhood,حي,Neighborhood
+النخيل,النخيل,Al-Nakhil,neighborhood,حي,Neighborhood
+المنصورة,المنصورة,Al-Mansourah,neighborhood,حي,Neighborhood
+الندوة,الندوة,Al-Nadwah,neighborhood,حي,Neighborhood
+المروج,المروج,Al-Muruj,neighborhood,حي,Neighborhood
+الورود,الورود,Al-Wurud,neighborhood,حي,Neighborhood
+الريان,الريان,Al-Rayyan,neighborhood,حي,Neighborhood
+الخالدية,الخالدية,Al-Khalidiyah,neighborhood,حي,Neighborhood
+الملز,الملز,Al-Malaz,neighborhood,حي,Neighborhood
+المعيزيلة,المعيزيلة,Al-Maizilah,neighborhood,حي,Neighborhood
+شبرا,شبرا,Shubra,neighborhood,حي,Neighborhood
+الأندلس,الأندلس,Al-Andalus,neighborhood,حي,Neighborhood
+الزهرة,الزهرة,Al-Zahrah,neighborhood,حي,Neighborhood
+الندى,الندى,Al-Nada,neighborhood,حي,Neighborhood
+الوزارات,الوزارات,Al-Wizarat,neighborhood,حي,Neighborhood
+المشاعل,المشاعل,Al-Mashael,neighborhood,حي,Neighborhood
+الفلاح,الفلاح,Al-Falah,neighborhood,حي,Neighborhood
+نمار,نمار,Namar,neighborhood,حي,Neighborhood
+ديراب,ديراب,Dirab,neighborhood,حي,Neighborhood
+السلي,السلي,Al-Sulay,neighborhood,حي,Neighborhood
+النفل,النفل,Al-Nafl,neighborhood,حي,Neighborhood
+المحمدية,المحمدية,Al-Muhammadiyah,neighborhood,حي,Neighborhood
+النزهة,النزهة,Al-Nuzhah,neighborhood,حي,Neighborhood
+المغرزات,المغرزات,Al-Mughrizat,neighborhood,حي,Neighborhood
+الغدير,الغدير,Al-Ghadir,neighborhood,حي,Neighborhood
+ضاحية,ضاحية,Dahiyat,truncated_name,اسم مقطوع,Truncated name
+المعذر,المعذر,Al-Maather,neighborhood,حي,Neighborhood
+المنار,المنار,Al-Manar,neighborhood,حي,Neighborhood
+المربع,المربع,Al-Murabba,neighborhood,حي,Neighborhood
+غرناطة,غرناطة,Granada,neighborhood,حي,Neighborhood
+الإزدهار,الإزدهار,Al-Izdihar,neighborhood,حي,Neighborhood
+سلطانة,سلطانة,Sultanah,neighborhood,حي,Neighborhood
+المرقب,المرقب,Al-Murqab,neighborhood,حي,Neighborhood
+المناخ,المناخ,Al-Manakh,neighborhood,حي,Neighborhood
+الشميسي,الشميسي,Al-Shumaisi,neighborhood,حي,Neighborhood
+البديعة,البديعة,Al-Badiah,neighborhood,حي,Neighborhood
+الديرة,الديرة,Al-Dirah,neighborhood,حي,Neighborhood
+الصناعية,الصناعية,Al-Sinaiyah,neighborhood,حي,Neighborhood
+الصفا,الصفا,Al-Safa,neighborhood,حي,Neighborhood
+اليمامة,اليمامة,Al-Yamamah,neighborhood,حي,Neighborhood
+غبيرا,غبيرا,Ghubairah,neighborhood,حي,Neighborhood
+المرسلات,المرسلات,Al-Mursalat,neighborhood,حي,Neighborhood
+جرير,جرير,Jarir,neighborhood,حي,Neighborhood
+المصانع,المصانع,Al-Masani,neighborhood,حي,Neighborhood
+طيبة,طيبة,Taibah,neighborhood,حي,Neighborhood
+العود,العود,Al-Oud,neighborhood,حي,Neighborhood
+الفاروق,الفاروق,Al-Farouq,neighborhood,حي,Neighborhood
+الإسكان,الإسكان,Al-Iskan,neighborhood,حي,Neighborhood
+الرحمانية,الرحمانية,Al-Rahmaniyah,neighborhood,حي,Neighborhood
+الحائر,الحائر,Al-Hair,neighborhood,حي,Neighborhood
+الفوطة,الفوطة,Al-Futah,neighborhood,حي,Neighborhood
+أحد,أحد,Uhud,neighborhood,حي,Neighborhood
+الرائد,الرائد,Al-Raed,neighborhood,حي,Neighborhood
+الشرق,الشرق,Al-Sharq,neighborhood,حي,Neighborhood
+ثليم,ثليم,Thulaim,neighborhood,حي,Neighborhood
+الشهداء,الشهداء,Al-Shuhada,neighborhood,حي,Neighborhood
+الفيصلية,الفيصلية,Al-Faisaliyah,neighborhood,حي,Neighborhood
+المروة,المروة,Al-Marwah,neighborhood,حي,Neighborhood
+عتيقة,عتيقة,Utaiqah,neighborhood,حي,Neighborhood
+الرفيعة,الرفيعة,Al-Rafiah,neighborhood,حي,Neighborhood
+الزهراء,الزهراء,Al-Zahra,neighborhood,حي,Neighborhood
+الضباط,الضباط,Al-Dhubbat,neighborhood,حي,Neighborhood
+عريض,عريض,Uraid,neighborhood,حي,Neighborhood
+العمل,العمل,Al-Amal,neighborhood,حي,Neighborhood
+الدريهمية,الدريهمية,Al-Duraihimiyah,neighborhood,حي,Neighborhood
+الخير,الخير,Al-Khair,neighborhood,حي,Neighborhood
+الجرادية,الجرادية,Al-Jarradiyah,neighborhood,حي,Neighborhood
+هيت,هيت,Hit,neighborhood,حي,Neighborhood
+الخزامى,الخزامى,Al-Khuzama,neighborhood,حي,Neighborhood
+سكيرينة,سكيرينة,Sukayrinah,neighborhood,حي,Neighborhood
+المرجان,المرجان,Al-Marjan,neighborhood,حي,Neighborhood
+المصفاة,المصفاة,Al-Misfat,neighborhood,حي,Neighborhood
+الوشام,الوشام,Al-Wisham,neighborhood,حي,Neighborhood
+الشرفية,الشرفية,Al-Sharafiyah,neighborhood,حي,Neighborhood
+بنبان,بنبان,Banban,neighborhood,حي,Neighborhood
+الصالحية,الصالحية,Al-Salihiyah,neighborhood,حي,Neighborhood
+الهدا,الهدا,Al-Hada,neighborhood,حي,Neighborhood
+البرية,البرية,Al-Burriyah,neighborhood,حي,Neighborhood
+النور,النور,Al-Noor,neighborhood,حي,Neighborhood
+المؤتمرات,المؤتمرات,Al-Mutamarat,neighborhood,حي,Neighborhood
+الغنامية,الغنامية,Al-Ghannamiyah,neighborhood,حي,Neighborhood
+عليشة,عليشة,Ulaishah,neighborhood,حي,Neighborhood
+الدوبية,الدوبية,Al-Dubiyah,neighborhood,حي,Neighborhood
+النموذجية,النموذجية,Al-Namudhajiyah,neighborhood,حي,Neighborhood
+المنصورية,المنصورية,Al-Mansuriyah,neighborhood,حي,Neighborhood
+جبرة,جبرة,Jabrah,neighborhood,حي,Neighborhood
+وادي,وادي,Wadi,truncated_name,اسم مقطوع,Truncated name
+صياح,صياح,Siyah,neighborhood,حي,Neighborhood
+الزاهر,الزاهر,Al-Zahir,neighborhood,حي,Neighborhood
+معكال,معكال,Mikal,neighborhood,حي,Neighborhood
+الناصرية,الناصرية,Al-Nasriyah,neighborhood,حي,Neighborhood
+0,0,0,invalid,قيمة غير صالحة,Invalid value
+العماجية,العماجية,Al-Amajiyah,neighborhood,حي,Neighborhood
+السويدى,السويدي,Al-Suwaidi,neighborhood,حي,Neighborhood
+الفاخرية,الفاخرية,Al-Fakhriyah,neighborhood,حي,Neighborhood
+الوسام,الوسام,Al-Wesam,neighborhood,حي,Neighborhood
+الرماية,الرماية,Al-Rimayah,neighborhood,حي,Neighborhood
+الدفاع,الدفاع,Al-Difa,neighborhood,حي,Neighborhood
+البطيحا,البطيحا,Al-Butaiha,neighborhood,حي,Neighborhood
+السفارات,السفارات,Al-Safarat,neighborhood,حي,Neighborhood
+صلاح,صلاح,Salah,truncated_name,اسم مقطوع,Truncated name
+العلا,العلا,Al-Ula,neighborhood,حي,Neighborhood
+خشم,خشم,Khashm,truncated_name,اسم مقطوع,Truncated name
+الوسيطا,الوسيطا,Al-Wusaita,neighborhood,حي,Neighborhood
+الفرسان,الفرسان,Al-Fursan,neighborhood,حي,Neighborhood
+النخبة,النخبة,Al-Nukhbah,neighborhood,حي,Neighborhood
+سلام,سلام,Salam,neighborhood,حي,Neighborhood
+التضامن,التضامن,Al-Tadamun,neighborhood,حي,Neighborhood
+جامعة,جامعة,University,truncated_name,اسم مقطوع,Truncated name
+وحدة,وحدة,Unit,truncated_name,اسم مقطوع,Truncated name
+بلدية الخرج,بلدية الخرج,Al-Kharj Municipality,municipality,بلدية محافظة,Governorate municipality
+بلدية الدوادمي,بلدية الدوادمي,Al-Dawadmi Municipality,municipality,بلدية محافظة,Governorate municipality
+طويق نمار,طويق نمار,Tuwaiq (Namar),neighborhood,حي,Neighborhood
+ظهرة لبن,ظهرة لبن,Dhahrat Laban,neighborhood,حي,Neighborhood
+بلدية وادي الدواسر,بلدية وادي الدواسر,Wadi Al-Dawasir Municipality,municipality,بلدية محافظة,Governorate municipality
+بلدية عفيف,بلدية عفيف,Afif Municipality,municipality,بلدية محافظة,Governorate municipality
+بلدية المجمعة,بلدية المجمعة,Al-Majmaah Municipality,municipality,بلدية محافظة,Governorate municipality
+بلدية الدلم,بلدية الدلم,Al-Dilam Municipality,municipality,بلدية محافظة,Governorate municipality
+بلدية المزاحمية,بلدية المزاحمية,Al-Muzahimiyah Municipality,municipality,بلدية محافظة,Governorate municipality
+بلدية الدرعية,بلدية الدرعية,Diriyah Municipality,municipality,بلدية محافظة,Governorate municipality
+بلدية العيينة والجبيلة,بلدية العيينة والجبيلة,Al-Uyaynah and Al-Jubailah Municipality,municipality,بلدية محافظة,Governorate municipality
+بلدية الجمش,بلدية الجمش,Al-Jamsh Municipality,municipality,بلدية محافظة,Governorate municipality
+العليا العليا,العليا العليا,Al-Olaya (Al-Olaya),neighborhood,حي,Neighborhood
+النسيم الغربي,النسيم الغربي,West Al-Naseem,neighborhood,حي,Neighborhood
+النسيم الشرقي,النسيم الشرقي,East Al-Naseem,neighborhood,حي,Neighborhood
+بلدية رماح,بلدية رماح,Rumah Municipality,municipality,بلدية محافظة,Governorate municipality
+الدار البيضاء,الدار البيضاء,Al-Dar Al-Baida,neighborhood,حي,Neighborhood
+بلدية الزلفي,بلدية الزلفي,Al-Zulfi Municipality,municipality,بلدية محافظة,Governorate municipality
+بلدية شقراء,بلدية شقراء,Shaqra Municipality,municipality,بلدية محافظة,Governorate municipality
+السليمانية العليا,السليمانية العليا,Al-Sulaymaniyah (Al-Olaya),neighborhood,حي,Neighborhood
+بلدية الافلاج,بلدية الافلاج,Al-Aflaj Municipality,municipality,بلدية محافظة,Governorate municipality
+العريجاء الغربي,العريجاء الغربي,West Al-Uraija,neighborhood,حي,Neighborhood
+بلدية حريملاء,بلدية حريملاء,Huraymila Municipality,municipality,بلدية محافظة,Governorate municipality
+ظهرة البديعة,ظهرة البديعة,Dhahrat Al-Badiah,neighborhood,حي,Neighborhood
+الملك فهد,الملك فهد,King Fahd,neighborhood,حي,Neighborhood
+بلدية نفي,بلدية نفي,Nifi Municipality,municipality,بلدية محافظة,Governorate municipality
+بلدية ثادق,بلدية ثادق,Thadiq Municipality,municipality,بلدية محافظة,Governorate municipality
+بلدية ضرماء,بلدية ضرماء,Dhurma Municipality,municipality,بلدية محافظة,Governorate municipality
+السويدي الغربي العريجاء,السويدي الغربي العريجاء,West Al-Suwaidi (Al-Uraija),neighborhood,حي,Neighborhood
+بلدية ساجر,بلدية ساجر,Sajir Municipality,municipality,بلدية محافظة,Governorate municipality
+العريجاء الأوسط,العريجاء الأوسط,Central Al-Uraija,neighborhood,حي,Neighborhood
+الملك فيصل,الملك فيصل,King Faisal,neighborhood,حي,Neighborhood
+الملك سلمان,الملك سلمان,King Salman,neighborhood,حي,Neighborhood
+منفوحة الجديدة,منفوحة الجديدة,New Manfuhah,neighborhood,حي,Neighborhood
+بلدية السليل,بلدية السليل,Al-Sulayyil Municipality,municipality,بلدية محافظة,Governorate municipality
+بلدية الحريق,بلدية الحريق,Al-Hariq Municipality,municipality,بلدية محافظة,Governorate municipality
+بلدية الهياثم,بلدية الهياثم,Al-Hayathim Municipality,municipality,بلدية محافظة,Governorate municipality
+أم الحمام الغربي,أم الحمام الغربي,West Umm Al-Hamam,neighborhood,حي,Neighborhood
+بلدية حوطة بني تميم,بلدية حوطة بني تميم,Hawtat Bani Tamim Municipality,municipality,بلدية محافظة,Governorate municipality
+بلدية الجلة وتبراك,بلدية الجلة وتبراك,Al-Jillah and Tabrak Municipality,municipality,بلدية محافظة,Governorate municipality
+ظهرة لبن الأحمدية,ظهرة لبن الأحمدية,Dhahrat Laban (Al-Ahmadiyah),neighborhood,حي,Neighborhood
+بلدية حوطة سدير,بلدية حوطة سدير,Hawtat Sudair Municipality,municipality,بلدية محافظة,Governorate municipality
+بلدية القويعية,بلدية القويعية,Al-Quwayiyah Municipality,municipality,بلدية محافظة,Governorate municipality
+ضاحية نمار,ضاحية نمار,Dahiyat Namar,neighborhood,حي,Neighborhood
+بلدية البجادية,بلدية البجادية,Al-Bijadiyah Municipality,municipality,بلدية محافظة,Governorate municipality
+الملك عبدالله,الملك عبدالله,King Abdullah,neighborhood,حي,Neighborhood
+البديعة القديمة,البديعة القديمة,Old Al-Badiah,neighborhood,حي,Neighborhood
+المعذر الشمالي,المعذر الشمالي,North Al-Maather,neighborhood,حي,Neighborhood
+أم الحمام الشرقي,أم الحمام الشرقي,East Umm Al-Hamam,neighborhood,حي,Neighborhood
+بلدية الارطاوية,بلدية الارطاوية,Al-Artawiyah Municipality,municipality,بلدية محافظة,Governorate municipality
+بلدية تمير,بلدية تمير,Tumair Municipality,municipality,بلدية محافظة,Governorate municipality
+الصناعية البطحاء,الصناعية البطحاء,Industrial Area (Al-Batha),neighborhood,حي,Neighborhood
+العليا المعذر,العليا المعذر,Al-Olaya (Al-Maather),neighborhood,حي,Neighborhood
+بلدية الرين,بلدية الرين,Al-Rayn Municipality,municipality,بلدية محافظة,Governorate municipality
+بلدية الغاط,بلدية الغاط,Al-Ghat Municipality,municipality,بلدية محافظة,Governorate municipality
+طويق عرقة,طويق عرقة,Tuwaiq (Irqah),neighborhood,حي,Neighborhood
+أم سليم,أم سليم,Umm Sulaim,neighborhood,حي,Neighborhood
+بلدية القصب,بلدية القصب,Al-Qasab Municipality,municipality,بلدية محافظة,Governorate municipality
+بلدية الرويضة,بلدية الرويضة,Al-Ruwaidah Municipality,municipality,بلدية محافظة,Governorate municipality
+بلدية الحلوة,بلدية الحلوة,Al-Hulwah Municipality,municipality,بلدية محافظة,Governorate municipality
+المجد,المجد,Al-Majd,neighborhood,حي,Neighborhood
+بلدية الحصاة,بلدية الحصاة,Al-Hasat Municipality,municipality,بلدية محافظة,Governorate municipality
+بلدية مرات,بلدية مرات,Marat Municipality,municipality,بلدية محافظة,Governorate municipality
+بلدية بدائع العضيان,بلدية بدائع العضيان,Badai Al-Udhyan Municipality,municipality,بلدية محافظة,Governorate municipality
+الملك عبدالعزيز,الملك عبدالعزيز,King Abdulaziz,neighborhood,حي,Neighborhood
+بلدية السر,بلدية السر,Al-Sirr Municipality,municipality,بلدية محافظة,Governorate municipality
+بلدية روضة سدير,بلدية روضة سدير,Rawdat Sudair Municipality,municipality,بلدية محافظة,Governorate municipality
+بلدية الحيانية والبرك,بلدية الحيانية والبرك,Al-Hayaniyah and Al-Birk Municipality,municipality,بلدية محافظة,Governorate municipality
+بلدية جلاجل,بلدية جلاجل,Jalajil Municipality,municipality,بلدية محافظة,Governorate municipality
+السليمانية الملز,السليمانية الملز,Al-Sulaymaniyah (Al-Malaz),neighborhood,حي,Neighborhood
+الصناعية الملز,الصناعية الملز,Industrial Area (Al-Malaz),neighborhood,حي,Neighborhood
+السويدى الغربى نمار,السويدي الغربي نمار,West Al-Suwaidi (Namar),neighborhood,حي,Neighborhood
+العليا الملز,العليا الملز,Al-Olaya (Al-Malaz),neighborhood,حي,Neighborhood
+بلدية الهدار,بلدية الهدار,Al-Haddar Municipality,municipality,بلدية محافظة,Governorate municipality
+بلدية الأحمر,بلدية الأحمر,Al-Ahmar Municipality,municipality,بلدية محافظة,Governorate municipality
+بلدية البديع,بلدية البديع,Al-Badi Municipality,municipality,بلدية محافظة,Governorate municipality
+وادي لبن,وادي لبن,Wadi Laban,neighborhood,حي,Neighborhood
+بلدية حلبان,بلدية حلبان,Halban Municipality,municipality,بلدية محافظة,Governorate municipality
+أم الشعال,أم الشعال,Umm Al-Shaal,neighborhood,حي,Neighborhood
+بلدية أشيقر,بلدية أشيقر,Ushaiqer Municipality,municipality,بلدية محافظة,Governorate municipality
+خشم العان,خشم العان,Khashm Al-Aan,neighborhood,حي,Neighborhood
+بلدية عروى,بلدية عروى,Arwa Municipality,municipality,بلدية محافظة,Governorate municipality
+صلاح الدين,صلاح الدين,Salah Al-Din,neighborhood,حي,Neighborhood
+الصناعية الجديدة,الصناعية الجديدة,New Industrial Area,neighborhood,حي,Neighborhood
+وحدة دعم بلديات المنطقة,وحدة دعم بلديات المنطقة,Regional Municipalities Support Unit,municipality,بلدية محافظة,Governorate municipality
+الدحو,الدحو,Al-Dahu,neighborhood,حي,Neighborhood
+المشرق,المشرق,Al-Mashriq,neighborhood,حي,Neighborhood
+السحاب,السحاب,Al-Sahab,neighborhood,حي,Neighborhood
+الرسالة,الرسالة,Al-Risalah,neighborhood,حي,Neighborhood
+مطار الملك خالد الدولي,مطار الملك خالد الدولي,King Khalid International Airport,neighborhood,حي,Neighborhood
+جامعة الملك سعود,جامعة الملك سعود,King Saud University,neighborhood,حي,Neighborhood
+الراية,الراية,Al-Rayah,neighborhood,حي,Neighborhood
+السدرة,السدرة,Al-Sidrah,neighborhood,حي,Neighborhood
+غير محدد,غير محدد,Unspecified,unspecified,غير محدد,Unspecified
+الرحاب,الرحاب,Al-Rehab,neighborhood,حي,Neighborhood
+غير متوفر في المصدر,غير متوفر في المصدر,Not Available in Source,missing,غير متوفر,Missing
