@@ -1,0 +1,26 @@
+# Architecture Decisions
+
+## ADR-001: BigQuery Sandbox instead of a billed GCP project
+
+**Context**
+Google Cloud billing for accounts in Saudi Arabia must go through a regional
+reseller (CNTXT). A personal free-trial billing account was not available.
+The me-central2 (Dammam) region was also blocked in the bootcamp project.
+
+**Decision**
+Use the BigQuery Sandbox (no billing account, no credit card).
+
+**Consequences**
+- No Cloud Storage. The Bronze layer is redesigned:
+  - Raw source files are kept unchanged, with a SHA-256 hash in a manifest
+    to prove they were not modified.
+  - Files are loaded as-is (all columns as text) into a `balagh_bronze` dataset.
+- Tables expire after 60 days. The full pipeline can rebuild every layer
+  from Bronze with one command, so this is acceptable (and proves reproducibility).
+- No DML (INSERT / UPDATE / MERGE). dbt models use `table` and `view`
+  materializations only, never `incremental`.
+
+**Datasets**
+- balagh_bronze: raw, unchanged, all text + ingestion metadata
+- balagh_silver: cleaned, standardized, validated
+- balagh_gold: fact, dimensions, KPIs (the dashboard reads from here only)
