@@ -5,12 +5,18 @@ select
     f.source_quarter,
     d.date            as received_date,
     d.year_month,
-    i.issue_type_ar,
-    l.location_ar,
-    l.is_municipality_level,
-    l.is_location_missing,
+
+    i.issue_code,
+    i.issue_ar,
+    i.issue_en,
+    i.domain_ar,
+    i.domain_en,
+
+    l.location_label_ar,
+    l.location_en,
+    l.location_type,
+
     s.status_code,
-    s.status_label_ar,
     f.time_band,
     f.closure_basis,
 

@@ -58,3 +58,17 @@ Fix:
 Lessons:
 - Never use a value that can appear in real data as a placeholder.
 - A green run is not enough: always check that the expected number of tests ran.
+
+## Finding 6: Issue-type spelling changed between quarters
+- Q2 removed hyphens, slashes and parentheses from issue names
+  (e.g. "خزان ارضي -بيارة" in Q1 vs "خزان ارضي بيارة" in Q2), and sometimes a space or "أو".
+- 272 raw names = 245 real issue types (27 variants).
+- Without a fix, the same issue looks "new" in Q2 and Q1-vs-Q2 comparisons are wrong.
+- Fix: the seed map_issue_type maps every raw variant to one canonical issue_code.
+
+## Finding 7: Q1 location names are cut to the first word
+- Q1 has no multi-word location; Q2 has 87 (e.g. Q1 "الملك" vs Q2 "الملك فهد", "الملك فيصل").
+- 8 Q1 values cannot be resolved to one neighborhood. They are typed `truncated_name`.
+- Also: one neighborhood spelled two ways (السويدي / السويدى), and one location value "0".
+- The official Q1 English file is a 30,000-row extract (Arabic has 34,100), so it could not be
+  joined by counts. English labels follow the official wording where it exists (149 of 245).

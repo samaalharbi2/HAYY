@@ -1,4 +1,4 @@
--- One row per (quarter, issue type).
+-- One row per (quarter, canonical issue).
 -- Resolution Insights: compares closure speed and repeat rate within each quarter.
 -- Descriptive only: groups show where to look, not why it happens.
 
@@ -6,7 +6,10 @@ with base as (
     select
         f.source_quarter,
         f.issue_key,
-        i.issue_type_ar,
+        i.issue_ar,
+        i.issue_en,
+        i.domain_ar,
+        i.domain_en,
         f.status_code,
         f.is_repeated,
         f.closure_hours,
@@ -29,7 +32,10 @@ per_issue as (
     select
         source_quarter,
         issue_key,
-        any_value(issue_type_ar)                                    as issue_type_ar,
+        any_value(issue_ar)                                         as issue_ar,
+        any_value(issue_en)                                         as issue_en,
+        any_value(domain_ar)                                        as domain_ar,
+        any_value(domain_en)                                        as domain_en,
         count(*)                                                    as total_requests,
         countif(is_repeated)                                        as repeated_requests,
         safe_divide(countif(is_repeated), count(*))                 as repeat_rate,
