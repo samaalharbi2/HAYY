@@ -1,0 +1,38 @@
+version: 2
+
+models:
+  - name: silver_service_requests
+    description: >
+      One row per 940 service request. Combines all quarters, removes embedded
+      header rows, and resolves the two source layouts (A and B).
+    columns:
+      - name: request_sk
+        description: "Surrogate key: md5(file_sha256 + source_row_number). The source has no request ID."
+        tests: [unique, not_null]
+      - name: source_layout
+        description: "A = standard layout. B = Q2 layout where status is not published."
+        tests:
+          - accepted_values:
+              values: ["A", "B"]
+      - name: status_code
+        description: "completed / in_progress / not_published (layout B). 'unknown' must never appear."
+        tests:
+          - not_null
+          - accepted_values:
+              values: ["completed", "in_progress", "not_published"]
+      - name: repeat_flag_ar
+        tests:
+          - not_null
+          - accepted_values:
+              values: ["مكرر", "غير مكرر"]
+      - name: time_band
+        description: "6-hour band from layout B. Meaning inferred (likely the received time)."
+        tests:
+          - accepted_values:
+              values: ["00:00 06:00", "06:00 12:00", "12:00 18:00", "18:00 00:00"]
+      - name: issue_type_ar
+        tests: [not_null]
+      - name: location_ar
+        tests: [not_null]
+      - name: received_date
+        tests: [not_null]
