@@ -83,20 +83,6 @@ erDiagram
 | `gold_issue_performance` | One row per (quarter, request type) with the decision group |
 | `rpt_service_requests` | Fact joined to all dimensions, KPI columns pre-computed |
 
-### KPI definitions
-
-| KPI | Definition |
-|---|---|
-| Repeat rate | Requests flagged as repeated by the source ÷ all requests |
-| Completion rate | Completed ÷ (completed + in progress), only where a status is published |
-| Median closure time | Exact median over requests with a valid closure time |
-| Decision group | Median closure time and repeat rate compared with all request types in the same quarter (minimum 30 requests) |
-
-| | Low repeat | High repeat |
-|---|---|---|
-| **Fast** | Effective | Root-cause attention |
-| **Slow** | Operational delay | Priority |
-
 ---
 
 ## Tests
@@ -110,29 +96,11 @@ erDiagram
 
 Total: 59 dbt tests (58 pass, 1 documented warning for the missing location).
 
----
-
-## Results (Jan – Jun 2026)
-
-| Metric | Value |
-|---|---|
-| Completion rate (published status only) | 98.8% |
-| Median closure time | 21 h |
-| Repeat rate | 44.4% |
-| Request types in *Priority* or *Root-cause attention* | 23, covering 41% of requests |
-
-Example: "Commercial facility observations" has a median closure time of 11 h in both quarters, with a repeat rate of 67.1% (Q1) and 64.9% (Q2).
 
 ---
 
 ## Dashboard
 
-| Page | Content |
-|---|---|
-| Overview | Request journey, decision groups, service domains, monthly trend, most repeated types |
-| Where to act | Closure time vs. repeat rate matrix, top 5 to review, persistent patterns |
-| Neighborhood map | Requests and repeat rate by neighborhood |
-| Data reliability | Coverage of status, location and outliers |
 
 <!-- Add screenshots to docs/images/ -->
 <p>
@@ -188,18 +156,7 @@ data/manifests/   one manifest per loaded file
 docs/             findings, decisions (ADRs), data sources
 ```
 
----
 
-## Limitations
-
-- "Repeated" is a source flag, not proof that the same complaint returned.
-- From April 2026 most requests have no published status.
-- The meaning of the Q2 time band is not documented by the publisher.
-- Q1 neighborhood names are truncated; compare neighborhoods within one period.
-- Map positions are approximate neighborhood centers.
-- The analysis is descriptive, not causal.
-
-Design decisions (BigQuery Sandbox, Airflow concurrency, idempotent loads) are recorded in [`docs/decisions.md`](docs/decisions.md).
 
 ---
 
