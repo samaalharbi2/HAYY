@@ -59,7 +59,7 @@ select
     issue_type_ar,
     location_ar,
     (location_ar = 'بلدية' or starts_with(location_ar, 'بلدية ')) as is_municipality_level,
-
+        location_ar is null as is_location_missing,
     -- status
     status_ar,
     case
