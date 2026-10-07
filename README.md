@@ -19,7 +19,19 @@ A data pipeline and bilingual (Arabic / English) dashboard for municipal 940 ser
 | pytest, uv, Git | Unit tests, environments, version control |
 
 ---
+## Project structure
 
+```
+airflow/          DAG and local start script
+config/           data contract
+src/ingestion/    validate_schema.py, load_bronze.py
+src/enrichment/   geocode_locations.py
+dbt/balagh/       models (silver, gold), seeds, macros, tests
+dashboard/        app.py
+tests/            pytest
+data/manifests/   one manifest per loaded file
+docs/             findings, decisions (ADRs), data sources
+```
 ## Architecture
 
 ```mermaid
@@ -142,19 +154,7 @@ dbt reads `~/.dbt/profiles.yml` (outside the repo, `method: oauth`, dataset `bal
 
 ---
 
-## Project structure
 
-```
-airflow/          DAG and local start script
-config/           data contract
-src/ingestion/    validate_schema.py, load_bronze.py
-src/enrichment/   geocode_locations.py
-dbt/balagh/       models (silver, gold), seeds, macros, tests
-dashboard/        app.py
-tests/            pytest
-data/manifests/   one manifest per loaded file
-docs/             findings, decisions (ADRs), data sources
-```
 
 
 
