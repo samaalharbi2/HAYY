@@ -96,7 +96,6 @@ erDiagram
 | Gold | Referential integrity, mart totals = fact totals | dbt |
 | Seeds | Every issue type and location has a label | dbt |
 
-Total: 59 dbt tests (58 pass, 1 documented warning for the missing location).
 
 
 ---
@@ -140,7 +139,6 @@ streamlit run dashboard/app.py
 python -m pytest -v
 ```
 
-dbt reads `~/.dbt/profiles.yml` (outside the repo, `method: oauth`, dataset `balagh_silver`, location `US`).
 
 ---
 
