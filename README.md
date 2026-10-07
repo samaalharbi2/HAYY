@@ -2,8 +2,6 @@
 
 A data pipeline and bilingual (Arabic / English) dashboard for municipal 940 service requests. It measures closure speed **and** recurrence, to identify request types that are closed but keep being reported again.
 
-**Scope:** 246,896 requests · Jan – Jun 2026 · Riyadh open data (the pipeline is not tied to one city)
-
 ---
 
 ## Tech stack
