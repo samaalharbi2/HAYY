@@ -12,7 +12,7 @@ from google.cloud import bigquery
 PROJECT_ID = os.environ.get("GCP_PROJECT_ID", "balagh-510905")
 GOLD = f"{PROJECT_ID}.balagh_gold"
 
-st.set_page_config(page_title="BALAGH | بَلاغ", page_icon="📍", layout="wide", initial_sidebar_state="collapsed")
+st.set_page_config(page_title="DAYEM | دايم", page_icon="📍", layout="wide", initial_sidebar_state="collapsed")
 
 # ---------------------------------------------------------------- brand (from the BALAGH pitch deck)
 NAVY, PANEL, LINE, TEXT, MUTED = "#0F1A2E", "#17233B", "#2A3756", "#E8EDF5", "#93A0B8"
@@ -27,11 +27,11 @@ MONTHS = {
 # ---------------------------------------------------------------- text: one language per page, never mixed
 T = {
     "en": {
-        "name": "BALAGH", "switch": "العربية",
+        "name": "DAYEM", "switch": "العربية",
         "subtitle": "Interactive dashboard for municipal service requests",
         "goal": "Goal: help customer-experience teams find requests that are closed but come back, "
                 "so root causes are fixed and repeat complaints go down.",
-        "period": "Period", "city": "City: Riyadh", "city_hint": "Built for any city. Riyadh data is available today.",
+        "period": "Period",
         "tabs": ["Overview", "Where to act", "Neighborhood map", "Data reliability"],
         "steps": ["Received", "Processed", "Closed", "Repeated?"],
         "received_sub": "service requests", "processed_sub": "completion rate", "processed_np": "status not published",
@@ -53,6 +53,16 @@ T = {
                     "Root-Cause Attention": ("Fast, but comes back", "Find out why it returns."),
                     "Operational Delay": ("Rarely repeated, but slow", "Shorten the response time."),
                     "Priority Issue": ("Slow and repeated", "Handle first.")},
+        "act_title": "What happens after closure?",
+        "act_sub": "We compare closure time with repeat rate to show where action is needed.",
+        "map_main": "Resolution effectiveness map", "map_main_sub": "Each bubble is a request type · {p}",
+        "framework": {"Effective": ("Fast + rarely repeated", "Keep the current process"),
+                      "Root-Cause Attention": ("Fast + repeated", "Find out why it returns"),
+                      "Operational Delay": ("Slow + rarely repeated", "Shorten the response time"),
+                      "Priority Issue": ("Slow + repeated", "Handle first")},
+        "panel_title": "Review first", "panel_sub": "Top 5 by priority, then by volume",
+        "u_req": "requests", "u_med": "median", "u_rep": "repeated",
+        "persistent_sub": "Request types that repeat in more than one period. Not a one-off.",
         "review": "Review first", "issue": "Request type", "group": "Group", "median_col": "Median closure (h)",
         "persistent": "Persistent patterns",
         "persistent_caption": "Needs attention in every period. Not a one-off.",
@@ -78,16 +88,16 @@ T = {
                      "Every request type and neighborhood has a label in both languages, or a warning is raised.",
                      "Every request links to a known date, type, location and status."],
         "groups": {g: g for g in GROUP_ORDER},
-        "source": "Source: 940 service requests, Riyadh Municipality open data.",
+        "source": "Source: open 940 service-request data published by the municipality.",
     },
     "ar": {
-        "name": "بَلاغ", "switch": "English",
+        "name": "دايم", "switch": "English",
         "subtitle": "لوحة بيانات تفاعلية لبلاغات البلديات",
         "goal": "الهدف: مساعدة فرق تجربة العميل على اكتشاف البلاغات التي تُغلق ثم تعود، "
                 "لمعالجة أسبابها الجذرية وتقليل تكرار الشكاوى.",
-        "period": "الفترة", "city": "المدينة: الرياض", "city_hint": "مصممة لأي مدينة، وبيانات الرياض متاحة حاليًا.",
+        "period": "الفترة",
         "tabs": ["نظرة عامة", "أين نتدخل؟", "خريطة الأحياء", "موثوقية البيانات"],
-        "steps": ["استُلم", "عولج", "أُغلق", "تكرر؟"],
+        "steps": ["الاستلام", "المعالجة", "الإغلاق", "التكرار؟"],
         "received_sub": "بلاغ", "processed_sub": "نسبة الإنجاز", "processed_np": "الحالة غير منشورة",
         "closed_sub": "وسيط زمن الإغلاق", "repeated_sub": "صُنّفت كمكررة",
         "not_published": "غير منشورة", "hours": "ساعة", "vs": "مقارنة بـ", "pp": "نقطة",
@@ -107,6 +117,16 @@ T = {
                     "Root-Cause Attention": ("سريع لكنه يعود", "ابحث لماذا يتكرر."),
                     "Operational Delay": ("نادر التكرار لكنه بطيء", "قلّل زمن الاستجابة."),
                     "Priority Issue": ("بطيء ومتكرر", "يُعالج أولًا.")},
+        "act_title": "ماذا يحدث بعد الإغلاق؟",
+        "act_sub": "نقارن زمن الإغلاق مع التكرار لتحديد أين يحتاج التدخل.",
+        "map_main": "خريطة فعالية المعالجة", "map_main_sub": "كل نقطة تمثل نوع بلاغ · {p}",
+        "framework": {"Effective": ("سريع + قليل التكرار", "حافظ على الإجراء الحالي"),
+                      "Root-Cause Attention": ("سريع + متكرر", "ابحث لماذا يتكرر"),
+                      "Operational Delay": ("بطيء + قليل التكرار", "قلّل زمن الاستجابة"),
+                      "Priority Issue": ("بطيء + متكرر", "يُعالج أولًا")},
+        "panel_title": "يُراجع أولًا", "panel_sub": "أعلى 5 حسب الأولوية ثم حجم البلاغات",
+        "u_req": "بلاغ", "u_med": "وسيط", "u_rep": "مكرر",
+        "persistent_sub": "أنواع بلاغات يظهر فيها التكرار عبر أكثر من فترة، وليست حالة عابرة.",
         "review": "يُراجع أولًا", "issue": "نوع البلاغ", "group": "المجموعة", "median_col": "وسيط الإغلاق (ساعة)",
         "persistent": "أنماط مستمرة",
         "persistent_caption": "تحتاج اهتمامًا في كل الفترات، وليست حالة عابرة.",
@@ -133,7 +153,7 @@ T = {
                      "كل بلاغ مرتبط بتاريخ ونوع وموقع وحالة معروفة."],
         "groups": {"Effective": "فعّال", "Root-Cause Attention": "يحتاج تحليل السبب الجذري",
                    "Operational Delay": "تأخر تشغيلي", "Priority Issue": "أولوية قصوى"},
-        "source": "المصدر: بيانات بلاغات 940 المفتوحة، أمانة منطقة الرياض.",
+        "source": "المصدر: بيانات بلاغات 940 المفتوحة المنشورة من الأمانة.",
     },
 }
 
@@ -230,8 +250,6 @@ html, body, .stApp, button, input, label, [data-testid="stMarkdownContainer"] {{
 .logo {{ color: {GOLDEN}; font-size: 2.8rem; font-weight: 700; line-height: 1.1; margin: 0; }}
 .subtitle {{ color: {TEXT}; font-size: 1.2rem; font-weight: 500; margin: .35rem 0 0; }}
 .goal {{ color: {MUTED}; font-size: 1rem; margin: .6rem 0 1.2rem; max-width: 70ch; line-height: 1.7; }}
-.city {{ display: inline-block; border: 1px solid {LINE}; border-radius: 999px; padding: .35rem .9rem;
-    color: {TEXT}; font-size: .9rem; margin-top: 1.9rem; }}
 .hero {{ position: relative; padding: 1.5rem 0 3rem; }}
 .hero::after {{ content: ""; position: absolute; inset: auto 0 0 0; height: 46px;
     background: url("data:image/svg+xml;utf8,{SKYLINE}") bottom / 100% 100% no-repeat; pointer-events: none; }}
@@ -257,7 +275,30 @@ html, body, .stApp, button, input, label, [data-testid="stMarkdownContainer"] {{
 .action .do {{ color: {TEXT}; }}
 .src {{ color: {MUTED}; font-size: .8rem; margin-top: 2.5rem; }}
 [data-testid="stTabs"] button p {{ font-size: 1rem; }}
-@media (max-width: 760px) {{ .journey, .actions {{ grid-template-columns: repeat(2, 1fr); row-gap: 1.5rem; }}
+[data-testid="stHeaderActionElements"] {{ display: none; }}
+h3 {{ font-size: 1.3rem !important; font-weight: 700 !important; padding: 0 0 .15rem !important; margin: 0 !important; }}
+[data-testid="stCaptionContainer"] {{ margin-bottom: .4rem; }}
+/* ----- "Where to act" page (redesigned) ----- */
+.page-head {{ padding: 1.75rem 0 1.25rem; }}
+.page-head h2 {{ color: {TEXT}; font-size: 1.9rem; font-weight: 700; margin: 0; }}
+.page-head p {{ color: {MUTED}; font-size: 1.05rem; margin: .4rem 0 0; }}
+.framework {{ display: grid; grid-template-columns: repeat(4, 1fr); gap: .9rem; margin-bottom: 2.25rem; }}
+.fw {{ background: {PANEL}; border: 1px solid {LINE}; border-inline-start: 4px solid; border-radius: 8px; padding: .8rem 1rem; }}
+.fw .g {{ color: {TEXT}; font-weight: 700; font-size: 1rem; }}
+.fw .r {{ color: {MUTED}; font-size: .88rem; margin: .15rem 0 .35rem; }}
+.fw .a {{ font-size: .92rem; font-weight: 500; }}
+.sec-title {{ color: {TEXT}; font-size: 1.3rem; font-weight: 700; margin: 0; }}
+.sec-sub {{ color: {MUTED}; font-size: .92rem; margin: .2rem 0 .8rem; }}
+.panel {{ background: {PANEL}; border: 1px solid {LINE}; border-radius: 8px; padding: 1rem 1.1rem .4rem; }}
+.row {{ padding: .75rem 0; border-bottom: 1px solid {LINE}; }}
+.row:last-child {{ border-bottom: none; }}
+.row .issue {{ color: {TEXT}; font-weight: 600; font-size: .98rem; line-height: 1.45; }}
+.row .badge {{ display: inline-flex; align-items: center; gap: .4rem; color: {MUTED}; font-size: .82rem; margin: .25rem 0 .35rem; }}
+.row .badge i {{ width: 8px; height: 8px; border-radius: 50%; display: inline-block; }}
+.row .stats {{ display: flex; gap: 1.1rem; color: {MUTED}; font-size: .85rem; }}
+.row .stats b {{ color: {TEXT}; font-weight: 700; font-size: .95rem; }}
+.spacer {{ height: 2.25rem; }}
+@media (max-width: 760px) {{ .journey, .actions, .framework {{ grid-template-columns: repeat(2, 1fr); row-gap: 1.5rem; }}
     .journey::before {{ display: none; }} }}
 </style>
 """, unsafe_allow_html=True)
@@ -270,12 +311,8 @@ with head:
     st.html(f'<p class="logo">{t["name"]}</p><p class="subtitle">{t["subtitle"]}</p><p class="goal">{t["goal"]}</p>')
 
 all_q = run_query(SQL["quarters"]).source_quarter.tolist()
-period_col, city_col = st.columns([4, 1])
-with period_col:
-    choice = st.radio(t["period"], ["ALL"] + all_q[::-1], horizontal=True, key="period",
-                      format_func=lambda c: period_label(all_q) if c == "ALL" else period_label([c]))
-with city_col:
-    st.html(f'<span class="city" title="{t["city_hint"]}">📍 {t["city"]}</span>')
+choice = st.radio(t["period"], ["ALL"] + all_q[::-1], horizontal=True, key="period",
+                  format_func=lambda c: period_label(all_q) if c == "ALL" else period_label([c]))
 
 selected = all_q if choice == "ALL" else [choice]
 previous = all_q[all_q.index(choice) - 1] if choice in all_q and all_q.index(choice) > 0 else None
@@ -314,6 +351,7 @@ st.html(f'<div class="hero"><div class="journey">{journey}</div></div>')
 
 
 # ---------------------------------------------------------------- chart helpers
+NO_BAR = {"displayModeBar": False}
 def style_fig(fig, height):
     fig.update_layout(height=height, margin=dict(l=10, r=10, t=10, b=10),
                       paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)",
@@ -354,13 +392,13 @@ with tab_overview:
                      category_orders={"label": [t["groups"][k_] for k_ in GROUP_ORDER]})
         fig.update_traces(textinfo="percent", textfont=dict(color=NAVY, size=13), sort=False,
                           marker=dict(line=dict(color=NAVY, width=2)))
-        st.plotly_chart(style_fig(fig, 380))
+        st.plotly_chart(style_fig(fig, 380), config=NO_BAR)
     with b:
         st.subheader(t["c_domains"])
         st.caption(t["c_domains_cap"])
         d = run_query(SQL["domains"], tuple(selected))
         st.plotly_chart(ranked_bars(d, domain_col, "requests",
-                                    lambda x: x.repeat_rate.map(lambda r: f"{r:.0%} {t['repeated_lbl']}"), 360))
+                                    lambda x: x.repeat_rate.map(lambda r: f"{r:.0%} {t['repeated_lbl']}"), 360), config=NO_BAR)
     c, e = st.columns(2, gap="large")
     with c:
         st.subheader(t["c_trend"])
@@ -372,7 +410,7 @@ with tab_overview:
         fig = style_fig(fig, 380)
         fig.update_layout(yaxis2=dict(overlaying="y", side="left" if rtl else "right",   # after style_fig,
                                       tickformat=".0%", range=[0, 1], showgrid=False))  # so it keeps its own side
-        st.plotly_chart(fig)
+        st.plotly_chart(fig, config=NO_BAR)
     with e:
         st.subheader(t["c_repeated"])
         st.caption(t["c_repeated_cap"])
@@ -381,59 +419,88 @@ with tab_overview:
                 .assign(repeat_rate=lambda x: x.repeated_requests / x.total_requests)
                 .nlargest(8, "repeated_requests"))
         st.plotly_chart(ranked_bars(top, issue_col, "repeated_requests",
-                                    lambda x: x.repeated_requests.map(lambda v: f"{int(v):,}"), 360))
+                                    lambda x: x.repeated_requests.map(lambda v: f"{int(v):,}"), 360), config=NO_BAR)
 
-# ---------------------------------------------------------------- 2. where to act
+# ---------------------------------------------------------------- 2. where to act   [UI REDESIGNED]
+# Same data and calculations as before (matrix + persistent queries). Only layout and presentation changed.
+PRIORITY_RANK = {"Priority Issue": 0, "Root-Cause Attention": 1, "Operational Delay": 2, "Effective": 3}
+
 with tab_act:
     focus_q = selected[-1]
     mq = m[m.source_quarter == focus_q]
-    st.subheader(t["matrix_title"])
-    st.caption(t["matrix_caption"].format(p=period_label([focus_q])))
-    plot_df = mq[mq.resolution_group != "Insufficient data"].copy()
-    plot_df["x"] = plot_df.median_closure_hours.clip(lower=0.5)        # log scale cannot show 0
-    plot_df["group_label"] = plot_df.resolution_group.map(t["groups"])
-    fig = px.scatter(plot_df, x="x", y="repeat_rate", size="total_requests", color="group_label",
-                     color_discrete_map={t["groups"][k_]: c for k_, c in GROUP_COLORS.items()},
-                     category_orders={"group_label": [t["groups"][k_] for k_ in GROUP_ORDER]},
-                     hover_name=issue_col, log_x=True, size_max=48,
-                     hover_data={"x": False, "group_label": False, "total_requests": ":,",
-                                 "median_closure_hours": ":.0f", "repeat_rate": ":.1%"},
-                     labels={"x": t["x_axis"], "repeat_rate": t["repeat_axis"], "total_requests": t["requests"],
-                             "median_closure_hours": t["median_col"], "group_label": ""})
-    fig.add_vline(x=plot_df.closure_threshold_hours.iloc[0], line_dash="dash", line_color=MUTED)
-    fig.add_hline(y=plot_df.repeat_threshold.iloc[0], line_dash="dash", line_color=MUTED)
-    fig.update_traces(marker=dict(line=dict(width=0.5, color=NAVY), opacity=0.88))
-    fig.update_yaxes(tickformat=".0%")
-    st.plotly_chart(style_fig(fig, 520))
 
-    st.subheader(t["actions_title"])
-    st.html('<div class="actions">' + "".join(
-        f'<div class="action" style="border-color:{GROUP_COLORS[g_]}"><div class="g">{t["groups"][g_]}</div>'
-        f'<div class="m">{t["actions"][g_][0]}</div><div class="do">{t["actions"][g_][1]}</div></div>'
+    # (1) Page header: the question
+    st.html(f'<div class="page-head"><h2>{t["act_title"]}</h2><p>{t["act_sub"]}</p></div>')
+
+    # (2) Decision framework: four compact cards
+    st.html('<div class="framework">' + "".join(
+        f'<div class="fw" style="border-inline-start-color:{GROUP_COLORS[g_]}">'
+        f'<div class="g">{t["groups"][g_]}</div><div class="r">{t["framework"][g_][0]}</div>'
+        f'<div class="a" style="color:{GROUP_COLORS[g_]}">{t["framework"][g_][1]}</div></div>'
         for g_ in GROUP_ORDER) + "</div>")
 
-    left, right = st.columns([3, 2], gap="large")
-    with left:
-        st.markdown(f"**{t['review']}**")
-        review = (mq[mq.resolution_group.isin(["Root-Cause Attention", "Priority Issue"])]
-                  .nlargest(10, "total_requests")
-                  .assign(group=lambda x: x.resolution_group.map(t["groups"]), repeat_pct=lambda x: x.repeat_rate * 100))
-        st.dataframe(review[[issue_col, "group", "total_requests", "median_closure_hours", "repeat_pct"]],
-                     hide_index=True, column_config={
-                         issue_col: t["issue"], "group": t["group"],
-                         "total_requests": st.column_config.NumberColumn(t["requests"], format="%d"),
-                         "median_closure_hours": st.column_config.NumberColumn(t["median_col"], format="%.0f"),
-                         "repeat_pct": pct_col(t["repeat_axis"])})
-    with right:
-        st.markdown(f"**{t['persistent']}**")
-        st.caption(t["persistent_caption"])
-        if len(all_q) < 2:
-            st.info(t["only_one_period"])
-        else:
-            pers = run_query(SQL["persistent"]).assign(repeat_pct=lambda x: x.repeat_rate * 100)
-            st.dataframe(pers[[issue_col, "requests", "repeat_pct"]], hide_index=True, column_config={
-                issue_col: t["issue"], "requests": st.column_config.NumberColumn(t["requests"], format="%d"),
-                "repeat_pct": pct_col(t["repeat_axis"])})
+    # (3) Main decision section: map (65%) + action panel (35%)
+    main_col, side_col = st.columns([65, 35], gap="large")
+    with main_col:
+        st.html(f'<p class="sec-title">{t["map_main"]}</p>'
+                f'<p class="sec-sub">{t["map_main_sub"].format(p=period_label([focus_q]))}</p>')
+        plot_df = mq[mq.resolution_group != "Insufficient data"].copy()
+        plot_df["x"] = plot_df.median_closure_hours.clip(lower=0.5)        # log scale cannot show 0
+        plot_df["group_label"] = plot_df.resolution_group.map(t["groups"])
+        fig = px.scatter(plot_df, x="x", y="repeat_rate", size="total_requests", color="group_label",
+                         color_discrete_map={t["groups"][k_]: c for k_, c in GROUP_COLORS.items()},
+                         category_orders={"group_label": [t["groups"][k_] for k_ in GROUP_ORDER]},
+                         hover_name=issue_col, log_x=True, size_max=44,
+                         hover_data={"x": False, "group_label": False, "total_requests": ":,",
+                                     "median_closure_hours": ":.0f", "repeat_rate": ":.1%"},
+                         labels={"x": t["x_axis"], "repeat_rate": t["repeat_axis"], "total_requests": t["requests"],
+                                 "median_closure_hours": t["median_col"], "group_label": ""})
+        fig.add_vline(x=plot_df.closure_threshold_hours.iloc[0], line_dash="dash", line_color=MUTED)
+        fig.add_hline(y=plot_df.repeat_threshold.iloc[0], line_dash="dash", line_color=MUTED)
+        fig.update_traces(marker=dict(line=dict(width=0.5, color=NAVY), opacity=0.88))
+        fig.update_yaxes(tickformat=".0%")
+        fig = style_fig(fig, 500)
+        fig.update_layout(showlegend=False)
+        # quadrant labels (fast side is on the left in English, on the right in Arabic)
+        fast, slow = (0.98, 0.02) if rtl else (0.02, 0.98)
+        for g_, (qx, qy) in {"Root-Cause Attention": (fast, 0.98), "Priority Issue": (slow, 0.98),
+                             "Effective": (fast, 0.02), "Operational Delay": (slow, 0.02)}.items():
+            fig.add_annotation(xref="paper", yref="paper", x=qx, y=qy, showarrow=False, text=t["groups"][g_],
+                               xanchor="right" if qx > 0.5 else "left", yanchor="top" if qy > 0.5 else "bottom",
+                               font=dict(color=GROUP_COLORS[g_], size=13))
+        st.plotly_chart(fig, config=NO_BAR)
+
+    with side_col:
+        top5 = (mq[mq.resolution_group.isin(PRIORITY_RANK)]
+                .assign(rank=lambda x: x.resolution_group.map(PRIORITY_RANK))
+                .sort_values(["rank", "total_requests"], ascending=[True, False]).head(5))
+        rows = "".join(
+            f'<div class="row"><div class="issue">{r[issue_col]}</div>'
+            f'<div class="badge"><i style="background:{GROUP_COLORS[r.resolution_group]}"></i>'
+            f'{t["groups"][r.resolution_group]}</div>'
+            f'<div class="stats"><span><b>{int(r.total_requests):,}</b> {t["u_req"]}</span>'
+            f'<span>{t["u_med"]} <b>{r.median_closure_hours:.0f}</b> {t["hours"]}</span>'
+            f'<span><b>{r.repeat_rate:.0%}</b> {t["u_rep"]}</span></div></div>'
+            for _, r in top5.iterrows())
+        st.html(f'<p class="sec-title">{t["panel_title"]}</p><p class="sec-sub">{t["panel_sub"]}</p>'
+                f'<div class="panel">{rows}</div>')
+
+    # (4) Supporting evidence: persistent patterns as one compact chart
+    st.html(f'<div class="spacer"></div><p class="sec-title">{t["persistent"]}</p>'
+            f'<p class="sec-sub">{t["persistent_sub"]}</p>')
+    if len(all_q) < 2:
+        st.info(t["only_one_period"])
+    else:
+        pers = run_query(SQL["persistent"]).head(7).sort_values("repeat_rate")
+        fig = px.bar(pers, x="repeat_rate", y=issue_col, orientation="h",
+                     text=pers.requests.map(lambda v: f"{int(v):,} {t['u_req']}"),
+                     labels={"repeat_rate": t["repeat_axis"], issue_col: ""},
+                     hover_data={"repeat_rate": ":.1%", "requests": ":,"})
+        fig.update_traces(marker_color=GOLDEN, textposition="inside",
+                          insidetextanchor="start" if rtl else "end", textfont=dict(color=NAVY, size=12))
+        fig = style_fig(fig, 60 + 46 * len(pers))
+        fig.update_xaxes(tickformat=".0%", range=[1, 0] if rtl else [0, 1], autorange=False)
+        st.plotly_chart(fig, config=NO_BAR)
 
 # ---------------------------------------------------------------- 3. neighborhood map
 with tab_map:
@@ -451,11 +518,11 @@ with tab_map:
                              size_max=34, zoom=9.6, center=dict(lat=24.72, lon=46.68), map_style="carto-darkmatter")
         fig.update_layout(height=560, margin=dict(l=0, r=0, t=0, b=0), coloraxis_showscale=False,
                           paper_bgcolor="rgba(0,0,0,0)")
-        st.plotly_chart(fig)
+        st.plotly_chart(fig, config=NO_BAR)
     st.subheader(t["top_locations"])
     st.caption(t["loc_caption"])
     st.plotly_chart(ranked_bars(loc.nlargest(15, "requests"), loc_col, "requests",
-                                lambda x: x.repeat_rate.map(lambda r: f"{r:.0%} {t['repeated_lbl']}"), 520))
+                                lambda x: x.repeat_rate.map(lambda r: f"{r:.0%} {t['repeated_lbl']}"), 520), config=NO_BAR)
 
 # ---------------------------------------------------------------- 4. data reliability
 with tab_trust:
