@@ -1,0 +1,13 @@
+# Ingestion & validation
+pandas
+openpyxl
+pyyaml
+python-dotenv
+
+# Google Cloud
+google-cloud-storage
+google-cloud-bigquery
+pyarrow
+
+# Testing
+pytest
