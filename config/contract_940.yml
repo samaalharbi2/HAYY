@@ -1,0 +1,57 @@
+# Data contract for 940 service-request files (Arabic releases)
+dataset: 940_service_requests
+source_language: ar
+
+# --- File structure ---
+file:
+  sheet: first            # sheet names change ("Sheet1", "2026"), so always read the first sheet
+  title_row: 0            # row 0 is a title like "بلاغات 940"
+  header_row: 1           # real column names are on row 1
+  expected_column_count: 6
+
+# --- Columns ---
+# raw_name: our stable internal name
+# aliases: every header name seen in the source (after trimming spaces)
+columns:
+  issue_type_raw:
+    aliases: ["نوع البلاغ"]
+    required: true
+  location_raw:
+    aliases: ["الموقع", "اسم الموقع"]
+    required: true
+  status_slot_raw:              # holds status in layout A, closure hours in layout B
+    aliases: ["حالة البلاغ"]
+    required: true
+  closure_slot_raw:             # holds closure hours in layout A, a time band in layout B
+    aliases: ["زمن الإغلاق بالساعات"]
+    required: true
+  received_raw:
+    aliases: ["تاريخ الاستلام"]
+    required: true
+  repeat_flag_raw:
+    aliases: ["تكرار البلاغ"]
+    required: true
+
+# --- Row layouts (detected per row from content, not from headers) ---
+layouts:
+  B:
+    description: "closure_slot holds a 6-hour time band; status_slot holds closure hours"
+    detect_column: closure_slot_raw
+    detect_pattern: '^\d{2}:\d{2} \d{2}:\d{2}$'
+  A:
+    description: "standard layout: status_slot holds status; closure_slot holds hours"
+    default: true
+
+# --- Accepted values (after trimming spaces) ---
+accepted_values:
+  status_ar: ["تم التنفيذ", "جاري العمل"]
+  repeat_flag_ar: ["مكرر", "غير مكرر"]
+  time_band: ["00:00 06:00", "06:00 12:00", "12:00 18:00", "18:00 00:00"]
+
+# --- Rules: what happens when something is wrong ---
+rules:
+  missing_required_column: fail       # stop the pipeline
+  unexpected_column: warn             # log it, do not load it
+  column_count_mismatch: fail
+  unknown_layout_row: warn            # count and report
+  embedded_header_row: drop_and_log   # e.g. a row equal to "نوع البلاغ"
