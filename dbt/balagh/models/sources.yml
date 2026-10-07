@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: bronze
+    schema: balagh_bronze
+    description: "Raw 940 files loaded unchanged (all text) by src/ingestion/load_bronze.py"
+    tables:
+      - name: raw_940_2026q1
+      - name: raw_940_2026q2

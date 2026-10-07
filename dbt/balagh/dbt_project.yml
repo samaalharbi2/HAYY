@@ -21,3 +21,6 @@ models:
 seeds:
   balagh:
     +schema: balagh_silver
+
+vars:
+  bronze_quarters: ["2026q1", "2026q2"]
