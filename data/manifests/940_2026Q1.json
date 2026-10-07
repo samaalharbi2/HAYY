@@ -1,0 +1,9 @@
+{"batch_id": "796bb9110ea9","source_quarter": "2026Q1","source_file": "940_2026Q1.xlsx","file_sha256": "8d8454db35884e3bae889198214d6ca664ac445246adb23b9455daeab98bc6dc","ingested_at": "2026-10-07T07:00:51.955440+00:00","table_id": "balagh-510905.balagh_bronze.raw_940_2026q1","rows_in_file": 34101,"rows_loaded": 34101,"validation": {
+    "status": "pass",
+    "embedded_header_rows": 1,
+    "data_rows": 34100,
+    "layout_counts": {
+      "A": 34100,
+      "B": 0
+    },
+    "warnings": []}}
