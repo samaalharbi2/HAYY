@@ -1,0 +1,36 @@
+# ===== Secrets: never commit =====
+.env
+*.key
+*-key.json
+*service-account*.json
+*credentials*.json
+keys/
+profiles.yml
+
+# ===== Data: lives in GCS, not GitHub =====
+data/raw/
+data/processed/
+*.xlsx
+*.parquet
+
+# ===== Python =====
+__pycache__/
+*.pyc
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# ===== dbt =====
+dbt/**/target/
+dbt/**/dbt_packages/
+dbt/**/logs/
+
+# ===== Airflow =====
+airflow/logs/
+airflow.db
+airflow.cfg
+
+# ===== OS / Editor =====
+.DS_Store
+Thumbs.db
+.vscode/
