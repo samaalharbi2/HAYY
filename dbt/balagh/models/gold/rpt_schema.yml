@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: rpt_service_requests
+    description: "Dashboard table. Same rows as the fact table, with dimension labels and KPI columns."
+    columns:
+      - name: request_sk
+        data_tests: [unique, not_null]
