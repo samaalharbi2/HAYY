@@ -1,0 +1,23 @@
+name: balagh
+version: "1.0.0"
+profile: balagh
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+test-paths: ["tests"]
+macro-paths: ["macros"]
+target-path: "target"
+clean-targets: ["target", "dbt_packages"]
+
+models:
+  balagh:
+    silver:
+      +schema: balagh_silver
+      +materialized: table
+    gold:
+      +schema: balagh_gold
+      +materialized: table
+
+seeds:
+  balagh:
+    +schema: balagh_silver

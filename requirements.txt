@@ -12,3 +12,4 @@ pyarrow
 # Testing
 pytest
 pandas-gbq
+dbt-bigquery
