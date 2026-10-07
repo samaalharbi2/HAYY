@@ -49,14 +49,6 @@ flowchart LR
 | Silver | One row per request, typed, with quality flags. Nothing is deleted silently |
 | Gold | Fact and dimension tables, a per-issue performance mart, and a reporting table for the dashboard |
 
-Pipeline DAG (runtime ≈ 2 min):
-
-```
-validate_2026Q1 → load_bronze_2026Q1 ─┐
-                                      ├→ dbt_build (Silver + Gold + tests)
-validate_2026Q2 → load_bronze_2026Q2 ─┘
-```
-
 ---
 
 ## Data-quality findings
