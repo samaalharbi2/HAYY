@@ -5,18 +5,22 @@ models:
     columns:
       - name: date_key
         data_tests: [unique, not_null]
+
   - name: dim_issue
     columns:
       - name: issue_key
         data_tests: [unique, not_null]
+
   - name: dim_location
     columns:
       - name: location_key
         data_tests: [unique, not_null]
+
   - name: dim_status
     columns:
       - name: status_code
         data_tests: [unique, not_null]
+
   - name: fact_service_requests
     description: "One row per 940 service request (grain). Reads from Silver only."
     columns:
@@ -46,3 +50,15 @@ models:
               arguments:
                 to: ref('dim_status')
                 field: status_code
+
+  - name: gold_issue_performance
+    description: "Resolution Insights: one row per (quarter, issue type). Descriptive, not causal."
+    columns:
+      - name: issue_quarter_key
+        data_tests: [unique, not_null]
+      - name: resolution_group
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ["Effective", "Root-Cause Attention", "Operational Delay", "Priority Issue", "Insufficient data"]
