@@ -84,8 +84,6 @@ Each request type is compared with the other types in the same quarter, by media
 
 ## Dashboard
 
-Each language has its own page, and the Arabic page is fully right-to-left.
-
 - **City overview:** request journey, resolution effectiveness, neighborhood map, top services, monthly trend, most repeated request types
 - **Intervention priorities:** closure time against repeat rate, and the request types to review first
 - **Data reliability:** coverage and quality indicators behind the figures
