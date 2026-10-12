@@ -1,71 +1,54 @@
-# حيّ · HAYY
+# HAYY | حيّ
 
-A data pipeline and bilingual (Arabic / English) dashboard for municipal 940 service requests. It measures closure speed **and** recurrence, to identify request types that are closed but keep being reported again.
+An end-to-end data pipeline and a bilingual (Arabic / English) dashboard for municipal 940 service requests.
 
----
+Most reports measure how fast a request is closed. HAYY also measures whether the same problem comes back after it is closed, so customer-experience teams can tell which issues need a real fix and not just a faster response.
+
+![HAYY dashboard](docs/images/dashboard_header_en.png)
 
 ## Tech stack
 
-| Tool | Role |
+| Tool | Used for |
 |---|---|
-| Python, pandas | Schema validation and raw-file ingestion |
-| BigQuery (Sandbox) | Warehouse: Bronze, Silver and Gold datasets |
+| Python, pandas | Schema validation and ingestion |
+| BigQuery | Data warehouse (Bronze, Silver, Gold) |
 | dbt | Transformations, data-quality tests, lineage |
 | Apache Airflow | Orchestration |
-| Streamlit, Plotly | Dashboard |
-| OpenStreetMap Nominatim | Neighborhood coordinates (one-time enrichment) |
-| pytest, uv, Git | Unit tests, environments, version control |
+| Streamlit, Plotly | Interactive dashboard |
+| OpenStreetMap | Neighborhood coordinates for the map |
+| pytest, Git | Testing and version control |
 
----
-## Project structure
-
-```
-airflow/          DAG and local start script
-config/           data contract
-src/ingestion/    validate_schema.py, load_bronze.py
-src/enrichment/   geocode_locations.py
-dbt/balagh/       models (silver, gold), seeds, macros, tests
-dashboard/        app.py
-tests/            pytest
-data/manifests/   one manifest per loaded file
-docs/             findings, decisions (ADRs), data sources
-```
 ## Architecture
 
 ```mermaid
 flowchart LR
-    A[Quarterly XLSX] --> B{Validate against<br/>data contract}
+    A[Quarterly files] --> B{Data contract check}
     B -- fail --> X[Stop]
-    B -- pass --> C[Bronze<br/>raw, unchanged]
-    C --> D[Silver<br/>cleaned, typed]
-    D --> E[Gold<br/>star schema + marts]
-    S[Seeds<br/>labels, coordinates] --> E
+    B -- pass --> C[Bronze<br/>raw data]
+    C --> D[Silver<br/>cleaned and validated]
+    D --> E[Gold<br/>star schema and marts]
     E --> F[Dashboard]
 ```
 
-| Layer | Content |
+| Layer | What it holds |
 |---|---|
-| Bronze | Every row as published, all text, plus lineage: source file, Excel row, SHA-256, batch ID, load time |
-| Silver | One row per request, typed, with quality flags. Nothing is deleted silently |
-| Gold | Fact and dimension tables, a per-issue performance mart, and a reporting table for the dashboard |
+| Bronze | The source data exactly as published, with lineage for every row (file, row number, file hash, load time) |
+| Silver | One clean row per request, with data-quality flags. No record is deleted |
+| Gold | Fact and dimension tables, a performance mart per request type, and a reporting table for the dashboard |
 
----
+Airflow runs the whole pipeline: validation, loading, and the dbt build with all tests. If the data fails a check, nothing moves to the next layer.
 
-## Data-quality findings
+## Data-quality challenges
 
-Full evidence in [`docs/data_quality_findings.md`](docs/data_quality_findings.md).
+The source data changed between releases without notice. These are the main issues the pipeline detects and handles automatically:
 
-| # | Finding | Handling |
-|---|---|---|
-| 1 | Q2 keeps the Q1 column names, but in 212,718 rows "status" holds closure hours and "closure time" holds a 6-hour time band | Layout detected per row from content; stored as `source_layout` (A / B) |
-| 2 | Portal lists 7 columns including a request number; files have 6 and no ID | Surrogate key: `md5(file_sha256 + source_row_number)` |
-| 3 | Sheet name, location column name and file name change every release | Column aliases in [`config/contract_940.yml`](config/contract_940.yml) |
-| 4 | One request with no location | Kept and flagged; not-null test with warn > 0, error > 100 |
-| 5 | Key collision between a missing location and the literal value "غير محدد" | Sentinel key in a shared macro |
-| 6 | 272 issue-type spellings are 245 real types (Q2 dropped hyphens and slashes) | Seed maps every variant to one canonical code |
-| 7 | Q1 locations cut to the first word (no multi-word names in Q1, 87 in Q2) | Typed `truncated_name`, excluded from neighborhood rankings |
-
----
+| Challenge | How it is handled |
+|---|---|
+| In the second quarter the column names stayed the same, but the content changed: "status" held closure hours and "closure time" held a time band | The layout of each row is detected from its content, not from the column name |
+| The source has no request ID | A stable key built from the file fingerprint and the row number |
+| Sheet names, column names and file names change in every release | A data contract with column aliases |
+| The same request type is written differently across quarters (272 spellings for 245 types) | A mapping that links every variant to one standard type, in Arabic and English |
+| Neighborhood names in the first quarter are cut to the first word | These records are flagged and kept out of neighborhood comparisons |
 
 ## Data model
 
@@ -77,75 +60,51 @@ erDiagram
     fact_service_requests }o--|| dim_status : status_code
 ```
 
-| Model | Grain |
+| Table | One row per |
 |---|---|
-| `fact_service_requests` | One row per request |
-| `dim_issue` | 245 canonical request types, Arabic and English labels, 12 service domains |
-| `dim_location` | 257 locations with type and coordinates (188 of 197 neighborhoods placed) |
-| `gold_issue_performance` | One row per (quarter, request type) with the decision group |
-| `rpt_service_requests` | Fact joined to all dimensions, KPI columns pre-computed |
+| `fact_service_requests` | Request |
+| `dim_issue` | Request type, with Arabic and English labels and a service domain |
+| `dim_location` | Location, with its type and map coordinates |
+| `gold_issue_performance` | Quarter and request type, with closure time, repeat rate and decision group |
+| `rpt_service_requests` | Request, with all labels and KPIs ready for the dashboard |
 
----
+## How request types are grouped
 
-## Tests
+Each request type is compared with the other types in the same quarter, by median closure time and repeat rate:
 
-| Layer | Checks | Count |
+| | Low repeat | High repeat |
 |---|---|---|
-| Validator | Valid file, layout B detection, renamed column, missing column, embedded header, unknown status | 6 (pytest) |
-| Silver | Bronze → Silver reconciliation, dates within quarter, layout consistency, accepted values, unique keys | dbt |
-| Gold | Referential integrity, mart totals = fact totals | dbt |
-| Seeds | Every issue type and location has a label | dbt |
+| **Fast** | Effective | Needs root-cause review |
+| **Slow** | Operational delay | Priority |
 
+## Testing
 
-
----
+- dbt tests for row reconciliation between layers, referential integrity, unique keys, accepted values and translation coverage
+- Unit tests for the schema validator with pytest
 
 ## Dashboard
 
+Each language has its own page, and the Arabic page is fully right-to-left.
 
-<!-- Add screenshots to docs/images/ -->
-<p>
-  <img src="docs/images/dashboard_overview_ar.png" width="49%">
-  <img src="docs/images/dashboard_where_to_act_en.png" width="49%">
-</p>
+- **City overview:** request journey, resolution effectiveness, neighborhood map, top services, monthly trend, most repeated request types
+- **Intervention priorities:** closure time against repeat rate, and the request types to review first
+- **Data reliability:** coverage and quality indicators behind the figures
 
----
+![City overview](docs/images/dashboard_overview_ar.png)
 
-## Run locally
+## Project structure
 
-```bash
-# 1. Environment
-uv venv --python 3.12 .venv && source .venv/bin/activate
-uv pip install -r requirements.txt
-gcloud auth application-default login
-export GCP_PROJECT_ID="your-project-id"
-for ds in balagh_bronze balagh_silver balagh_gold; do bq --location=US mk --dataset ${GCP_PROJECT_ID}:${ds}; done
-
-# 2. Data: save the quarterly files as data/raw/940_2026Q1.xlsx and data/raw/940_2026Q2.xlsx
-
-# 3. Pipeline (Airflow UI on :8080, DAG "balagh_pipeline")
-./airflow/start_airflow.sh
-
-#    or manually
-python -m src.ingestion.validate_schema data/raw/940_2026Q1.xlsx data/raw/940_2026Q2.xlsx
-python -m src.ingestion.load_bronze data/raw/940_2026Q1.xlsx 2026Q1
-python -m src.ingestion.load_bronze data/raw/940_2026Q2.xlsx 2026Q2
-cd dbt/balagh && dbt build && cd ../..
-
-# 4. Dashboard (:8501)
-streamlit run dashboard/app.py
-
-# Tests
-python -m pytest -v
+```
+airflow/          orchestration
+config/           data contract
+src/ingestion/    validation and loading
+src/enrichment/   neighborhood coordinates
+dbt/balagh/       Silver and Gold models, seeds, tests
+dashboard/        Streamlit app
+tests/            unit tests
+docs/             findings and design decisions
 ```
 
-
 ---
 
-
-
-
-
----
-
-**Author:** [Sama Alharbi](https://github.com/samaalharbi2) ·
+**Sama Alharbi** · Data Engineering
