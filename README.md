@@ -4,7 +4,7 @@ An end-to-end data pipeline and a bilingual (Arabic / English) dashboard for mun
 
 Most reports measure how fast a request is closed. HAYY also measures whether the same problem comes back after it is closed, so customer-experience teams can tell which issues need a real fix and not just a faster response.
 
-![HAYY dashboard](docs/images/dashboard_header_en.png)
+![HAYY dashboard](docs/images/header.jpg)
 
 ## Tech stack
 
