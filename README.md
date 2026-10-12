@@ -90,7 +90,7 @@ Each language has its own page, and the Arabic page is fully right-to-left.
 - **Intervention priorities:** closure time against repeat rate, and the request types to review first
 - **Data reliability:** coverage and quality indicators behind the figures
 
-![City overview](docs/images/dashboard_overview_ar.png)
+![City overview](docs/images/5935797609878458593.jpg)
 
 ## Project structure
 
